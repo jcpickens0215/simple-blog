@@ -2,6 +2,19 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+// Get all users route
+// 'domain'/api/users
+router.get('/', async (req, res) => {
+  let allUsers = await User.findAll(
+    {
+      attributes: {
+        include: ['username','email','password']
+      }
+    }
+  );
+  res.status(200).json(allUsers);
+});
+
 // Create user route
 // 'domain'/api/users
 router.post('/', async (req, res) => {

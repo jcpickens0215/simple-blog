@@ -1,0 +1,56 @@
+[
+    {
+        "title":"Blog #1!",
+        "body":"1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum recusandae, numquam natus, ab et consequuntur at iusto minima amet ipsum corporis repellendus earum asperiores quo? Esse numquam nam sint repudiandae.",
+        "user_id":1
+    },
+    {
+        "title":"Blog #2!",
+        "body":"2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum recusandae, numquam natus, ab et consequuntur at iusto minima amet ipsum corporis repellendus earum asperiores quo? Esse numquam nam sint repudiandae.",
+        "user_id":2
+    },
+    {
+        "title":"Blog #3!",
+        "body":"3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum recusandae, numquam natus, ab et consequuntur at iusto minima amet ipsum corporis repellendus earum asperiores quo? Esse numquam nam sint repudiandae.",
+        "user_id":3
+    },
+    {
+        "title":"Blog #4!",
+        "body":"4 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum recusandae, numquam natus, ab et consequuntur at iusto minima amet ipsum corporis repellendus earum asperiores quo? Esse numquam nam sint repudiandae.",
+        "user_id":1
+    },
+    {
+        "title":"Blog #5!",
+        "body":"5 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum recusandae, numquam natus, ab et consequuntur at iusto minima amet ipsum corporis repellendus earum asperiores quo? Esse numquam nam sint repudiandae.",
+        "user_id":2
+    },
+    {
+        "title":"Blog #6!",
+        "body":"6 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum recusandae, numquam natus, ab et consequuntur at iusto minima amet ipsum corporis repellendus earum asperiores quo? Esse numquam nam sint repudiandae.",
+        "user_id":3
+    },
+    {
+        "title":"Blog #7!",
+        "body":"7 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum recusandae, numquam natus, ab et consequuntur at iusto minima amet ipsum corporis repellendus earum asperiores quo? Esse numquam nam sint repudiandae.",
+        "user_id":1
+    },
+    {
+        "title":"Blog #8!",
+        "body":"8 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum recusandae, numquam natus, ab et consequuntur at iusto minima amet ipsum corporis repellendus earum asperiores quo? Esse numquam nam sint repudiandae.",
+        "user_id":2
+    },
+    {
+        "title":"Blog #9!",
+        "body":"9 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum recusandae, numquam natus, ab et consequuntur at iusto minima amet ipsum corporis repellendus earum asperiores quo? Esse numquam nam sint repudiandae.",
+        "user_id":3
+    },    {
+        "title":"Blog #10!",
+        "body":"10 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum recusandae, numquam natus, ab et consequuntur at iusto minima amet ipsum corporis repellendus earum asperiores quo? Esse numquam nam sint repudiandae.",
+        "user_id":1
+    },
+    {
+        "title":"Blog #11!",
+        "body":"11 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum recusandae, numquam natus, ab et consequuntur at iusto minima amet ipsum corporis repellendus earum asperiores quo? Esse numquam nam sint repudiandae.",
+        "user_id":2
+    }
+]

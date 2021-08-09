@@ -6,11 +6,29 @@ const withAuth = require('../utils/auth');
 // Main route
 // 'domain'/
 router.get('/', async (req, res) => {
-
   try {
+    let mostRecentBlogs = await Blog.findAll(
+      {
+        attributes: {
+          include: [
+            'title',
+            'body',
+            'date_created',
+          ],
+        },
+        include: [{
+          model: User,
+          attributes: ['username']
+        }]
+      }
+    );
 
+    // const blogs = mostRecentBlogs.map(x => x.get({plain:true}));
+    // res.status(200).render('homepage', { blogs });
+
+    // Testing!
+    res.status(200).json(mostRecentBlogs);
   } catch (err) {
-
     res.status(500).json(err);
   }
 });
@@ -18,11 +36,30 @@ router.get('/', async (req, res) => {
 // Individual Blog post
 // 'domain'/blog/'id'
 router.get('/blog/:id', async (req, res) => {
-
   try {
+    let selectedBlog = await Blog.findByPk(
+      req.params.id,
+      {
+        attributes: {
+          include: [
+            'title',
+            'body',
+            'date_created',
+          ],
+        },
+        include: [{
+          model: User,
+          attributes: ['username']
+        }]
+      }
+    );
 
+    // selectedBlog.get({plain:true});
+    // res.status(200).render('blog', selectedBlog);
+
+    // Testing!
+    res.status(200).json(selectedBlog);
   } catch (err) {
-
     res.status(500).json(err);
   }
 });
@@ -31,12 +68,9 @@ router.get('/blog/:id', async (req, res) => {
 // Use withAuth middleware to prevent access to route
 // 'domain'/profile
 router.get('/profile', withAuth, async (req, res) => {
-
   try {
-
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
-
       attributes: { exclude: ['password'] },
       include: [{ model: Project }],
     });
@@ -44,12 +78,10 @@ router.get('/profile', withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
 
     res.render('profile', {
-
       ...user,
-      logged_in: true
+      logged_in: true,
     });
   } catch (err) {
-
     res.status(500).json(err);
   }
 });
@@ -57,10 +89,8 @@ router.get('/profile', withAuth, async (req, res) => {
 // User Login route
 // 'domain'/login
 router.get('/login', (req, res) => {
-
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    
     res.redirect('/profile');
     return;
   }
