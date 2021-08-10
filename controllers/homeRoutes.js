@@ -23,11 +23,11 @@ router.get('/', async (req, res) => {
       }
     );
 
-    // const blogs = mostRecentBlogs.map(x => x.get({plain:true}));
-    // res.status(200).render('homepage', { blogs });
+    const blogs = mostRecentBlogs.map(x => x.get({plain:true}));
+    res.status(200).render('homepage', { blogs });
 
     // Testing!
-    res.status(200).json(mostRecentBlogs);
+    // res.status(200).json(mostRecentBlogs);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -37,6 +37,7 @@ router.get('/', async (req, res) => {
 // 'domain'/blog/'id'
 router.get('/blog/:id', async (req, res) => {
   try {
+    console.log('ATTEMPT QUERY');
     let selectedBlog = await Blog.findByPk(
       req.params.id,
       {
@@ -50,15 +51,20 @@ router.get('/blog/:id', async (req, res) => {
         include: [{
           model: User,
           attributes: ['username']
-        }]
+        }],
       }
     );
 
-    // selectedBlog.get({plain:true});
-    // res.status(200).render('blog', selectedBlog);
+    console.log('ATTEMPT SERIALIZE');
+    let blog = selectedBlog.get({plain:true});
+
+    console.log(blog);
+
+    console.log('ATTEMPT RENDER');
+    res.status(200).render('blog', blog);
 
     // Testing!
-    res.status(200).json(selectedBlog);
+    // res.status(200).json(selectedBlog);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -69,10 +75,11 @@ router.get('/blog/:id', async (req, res) => {
 // 'domain'/profile
 router.get('/profile', withAuth, async (req, res) => {
   try {
+    // console.log('ATTEMPT ');
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
+      include: [{ model: Blog }],
     });
 
     const user = userData.get({ plain: true });
