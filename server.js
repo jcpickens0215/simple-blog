@@ -1,5 +1,6 @@
 // Imported libraries
 const path = require('path');
+const {v4 : uuidv4} = require('uuid');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
@@ -18,8 +19,11 @@ const hbs = exphbs.create({ helpers });
 // Define the session vars
 const sess = {
 
-  secret: 'Super secret secret',
-  cookie: {},
+  secret: uuidv4(),
+  cookie: {
+    // 30 Minutes
+    maxAge: 1800000,
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
