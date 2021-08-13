@@ -16,3 +16,7 @@ header, .blog:not(:last-child) {
   color: #065b83;
   text-decoration: underline;
 }
+
+.edit-comment-form {
+  display: none;
+}

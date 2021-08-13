@@ -77,7 +77,6 @@ router.get('/blog/:id', async (req, res) => {
       }
     });
 
-    console.log('ATTEMPT RENDER');
     res.status(200).render('blog', {
       ...blog,
       logged_in: req.session.logged_in
@@ -92,7 +91,6 @@ router.get('/blog/:id', async (req, res) => {
 // 'domain'/profile
 router.get('/profile', withAuth, async (req, res) => {
   try {
-    // console.log('ATTEMPT ');
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
