@@ -1,6 +1,6 @@
 // Import libraries
 const router = require('express').Router();
-const { Blog, User } = require('../models');
+const { Blog, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Main route
@@ -19,15 +19,20 @@ router.get('/', async (req, res) => {
         include: [{
           model: User,
           attributes: ['username']
-        }]
+        }],
+        limit: 10,
+        order: [
+          ['date_created','DESC']
+        ]
       }
     );
 
     const blogs = mostRecentBlogs.map(x => x.get({plain:true}));
-    res.status(200).render('homepage', { blogs });
+    res.status(200).render('homepage', {
+      blogs,
+      logged_in: req.session.logged_in
+    });
 
-    // Testing!
-    // res.status(200).json(mostRecentBlogs);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -37,34 +42,46 @@ router.get('/', async (req, res) => {
 // 'domain'/blog/'id'
 router.get('/blog/:id', async (req, res) => {
   try {
-    console.log('ATTEMPT QUERY');
     let selectedBlog = await Blog.findByPk(
       req.params.id,
       {
-        attributes: {
-          include: [
-            'title',
-            'body',
-            'date_created',
-          ],
-        },
         include: [{
           model: User,
           attributes: ['username']
-        }],
+        },
+        {
+          model: Comment,
+          required: false,
+          include: [{
+            model: User,
+            exclude: ['password']
+          }],
+        },
+        ]
       }
     );
 
-    console.log('ATTEMPT SERIALIZE');
     let blog = selectedBlog.get({plain:true});
+    let comments = blog.comments;
+    blog.comments = [];
 
-    console.log(blog);
+    comments.map( (x) => {
+      if (req.session.logged_in) {
+        if (x.user_id === req.session.user_id) {
+          blog.comments.push({...x, is_my_comment: true});
+        } else {
+          blog.comments.push({...x, is_my_comment: false});
+        }
+      } else {
+        blog.comments.push(x);
+      }
+    });
 
     console.log('ATTEMPT RENDER');
-    res.status(200).render('blog', blog);
-
-    // Testing!
-    // res.status(200).json(selectedBlog);
+    res.status(200).render('blog', {
+      ...blog,
+      logged_in: req.session.logged_in
+    });
   } catch (err) {
     res.status(500).json(err);
   }

@@ -1,0 +1,20 @@
+[
+    {
+        "title":"Wow #1!",
+        "body":"Written by Lernantino on Blog #1",
+        "user_id":1,
+        "blog_id":1
+    },
+    {
+        "title":"Great Blog #1",
+        "body":"Written by Sal on Blog #1",
+        "user_id":2,
+        "blog_id":1
+    },
+    {
+        "title":"Go go Blog #2!",
+        "body":"Written by Amiko on Blog #2",
+        "user_id":3,
+        "blog_id":2
+    }
+]

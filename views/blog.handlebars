@@ -3,3 +3,20 @@
   <p>{{body}}</p>
   <p>Created by {{user.username}} on {{format_date date_created}}</p>
 </div>
+{{#each comments as |comment|}}
+<div class="ml-3" data-comment-id="{{comment.id}}">
+  <h2>{{comment.title}}</h2>
+  <p>{{comment.body}}</p>
+  <p>Commented by {{comment.user.username}} on {{format_date comment.date_created}}</p>
+  {{#if comment.is_my_comment}}
+    <p>
+      <span>
+        <button class="btn btn-sm btn-warning" data-id="{{comment.id}}">EDIT</button>
+      </span>
+      <span>
+        <button class="btn btn-sm btn-danger" data-id="{{comment.id}}">DELETE</button>
+      </span>
+    </p>
+  {{/if}}
+</div>
+{{/each}}

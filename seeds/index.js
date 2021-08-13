@@ -1,8 +1,9 @@
 // Import Libraries and seed data
 const sequelize = require('../config/connection');
-const { User, Blog } = require('../models');
+const { User, Blog, Comment } = require('../models');
 const userData = require('./users.json');
 const blogData = require('./blogs.json');
+const commentData = require('./comments.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -13,6 +14,11 @@ const seedDatabase = async () => {
   });
 
   const blogs = await Blog.bulkCreate(blogData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  const comments = await Comment.bulkCreate(commentData, {
     individualHooks: true,
     returning: true,
   });
