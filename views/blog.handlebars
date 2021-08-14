@@ -20,36 +20,36 @@
                 placeholder="Type your comment here!"></textarea>
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-primary" id="add-comment-btn">Add Your Comment</button>
+      <button type="submit" class="btn btn-primary add-comment-btn">Add Your Comment</button>
     </div>
   </form>
 </div>
 {{#each comments as |comment|}}
 <div class="ml-3 comment" data-comment-id="{{comment.id}}">
-  <h3>{{comment.title}}</h2>
+  <h4>{{comment.title}}</h4>
   <p>{{comment.body}}</p>
   <p>Commented by {{comment.user.username}} on {{format_date comment.date_created}}</p>
   <div class="my-3">
-  <form class="form edit-comment-form" id="edit-comment-form-{{comment.id}}">
-    <h4>Edit your comment:</h4>
-    <div class="form-group">
-      <input class="form-input"
-             type="text"
-             id="edit-comment-title-{{comment.id}}"
-             name="comment-title"
-             placeholder="{{comment.title}}"/>
-    </div>
-    <div class="form-group">
-      <textarea class="form-input"
-                id="edit-comment-body-{{comment.id}}"
-                name="comment-body"
-                >{{comment.body}}</textarea>
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary submit-update-btn">Update Your Comment</button>
-    </div>
-  </form>
-</div>
+    <form class="form edit-comment-form" id="edit-comment-form-{{comment.id}}">
+      <h4>Edit your comment:</h4>
+      <div class="form-group">
+        <input class="form-input"
+               type="text"
+               id="edit-comment-title-{{comment.id}}"
+               name="comment-title"
+               value="{{comment.title}}"/>
+      </div>
+      <div class="form-group">
+        <textarea class="form-input"
+                  id="edit-comment-body-{{comment.id}}"
+                  name="comment-body"
+                  >{{comment.body}}</textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary submit-update-btn" data-id="{{comment.id}}">Update Your Comment</button>
+      </div>
+    </form>
+  </div>
   {{#if comment.is_my_comment}}
     <p>
       <span>
