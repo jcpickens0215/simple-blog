@@ -17,6 +17,6 @@ header, .blog:not(:last-child) {
   text-decoration: underline;
 }
 
-.edit-comment-form {
+.edit-comment-form, #edit-blog-reveal-btn {
   display: none;
 }

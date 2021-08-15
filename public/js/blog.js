@@ -6,6 +6,12 @@ function handleEditButton (element) {
   formToOpen.setAttribute('style', 'display: block;');
 }
 
+// Reveal Comment edit form
+function handleShowBlogEditButton () {
+  var formToOpen = document.getElementById('edit-blog-reveal-btn');
+  formToOpen.setAttribute('style', 'display: block;');
+}
+
 // DELETE Comment
 var handleDeleteButton = async (element) => {
   if (element.hasAttribute('data-id')) {
@@ -57,18 +63,10 @@ var handleCommentUpdateButton = async (element) => {
   var id = element.getAttribute('data-id');
 
   // Get contents of Title and Body
-  console.log(document.getElementById(`edit-comment-title-${id}`));
-  console.log(document.getElementById(`edit-comment-body-${id}`));
-
   const title = document.getElementById(`edit-comment-title-${id}`).value.trim();
   const body = document.getElementById(`edit-comment-body-${id}`).value.trim();
 
   const blog_id = window.location.pathname.split('/')[2];
-
-  console.log(title);
-  console.log(body);
-  console.log(`Comment ID: ${id}`);
-  console.log(`Blog ID: ${blog_id}`);
 
   // FETCH PUT request here passing in title and body
   // Redirect back here
@@ -91,6 +89,31 @@ var handleCommentUpdateButton = async (element) => {
   }
 };
 
+const handleEditBlog = async (event) => {
+  event.preventDefault();
+
+  const blog_id = window.location.pathname.split('/')[2];
+
+  const title = document.querySelector('#edit-blog-title').value.trim();
+  const body = document.querySelector('#edit-blog-body').value.trim();
+
+  if (title && body) {
+    const response = await fetch(`/api/blog/${blog_id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ title, body }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      document.location = window.location;
+    } else {
+      document.location.replace('/login');
+    }
+  }
+};
+
 function handleClickedButton(event) {
   event.preventDefault();
 
@@ -102,6 +125,10 @@ function handleClickedButton(event) {
     handleCommentSubmitButton();
   } else if (event.target.classList.contains('submit-update-btn')) {
     handleCommentUpdateButton(event.target);
+  } else if (event.target.classList.contains('edit-blog-btn')) {
+    handleShowBlogEditButton();
+  } else if (event.target.classList.contains('submit-update-blog-btn')) {
+    handleEditBlog(event);
   }
 }
 

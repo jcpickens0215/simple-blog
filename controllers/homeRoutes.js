@@ -65,6 +65,9 @@ router.get('/blog/:id', async (req, res) => {
     let comments = blog.comments;
     blog.comments = [];
 
+    console.log(blog.user_id);
+    console.log(req.session.user_id);
+
     comments.map( (x) => {
       if (req.session.logged_in) {
         if (x.user_id === req.session.user_id) {
@@ -79,7 +82,8 @@ router.get('/blog/:id', async (req, res) => {
 
     res.status(200).render('blog', {
       ...blog,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      my_blog: blog.user_id = req.session.user_id ? true : false
     });
   } catch (err) {
     res.status(500).json(err);

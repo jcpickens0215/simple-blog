@@ -3,6 +3,32 @@
   <p>{{body}}</p>
   <p class="text-right">Created by {{user.username}} on {{format_date date_created}}</p>
 </div>
+{{#if my_blog}}
+<div class="text-right">
+  <button class="edit-blog-btn">Edit This Blog</button>
+</div>
+{{/if}}
+<div>
+  <form class="form" id="edit-blog-reveal-btn">
+    <h4>Edit your blog:</h4>
+    <div class="form-group">
+      <input class="form-input"
+              type="text"
+              id="edit-blog-title"
+              name="blog-title"
+              value="{{title}}"/>
+    </div>
+    <div class="form-group">
+      <textarea class="form-input"
+                id="edit-blog-body"
+                name="blog-body"
+                >{{body}}</textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary submit-update-blog-btn">Update Your Blog</button>
+    </div>
+  </form>
+</div>
 <div class="my-3">
   <h4>Add a comment:</h4>
   <form class="form new-comment-form">
