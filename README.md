@@ -6,6 +6,9 @@ An interactive blogging site using the Model/View/Controller paradigm for servin
 ## Screenshot
 ![Bloggo](assets/images/README_Screenshot.png)
 
+## Deployed Example
+[Bloggo!](https://simple-blog-jcpickens0215.herokuapp.com/)
+
 ## Installation
 Required: Node.js and MySql Server.
 
